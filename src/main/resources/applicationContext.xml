@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+     
+    <bean id="xmlJdbcConnection"    class="com.mahesh.besics.springDemo.xml.XmlJdbcConnection"></bean>
+    <bean id="xmlPersonDao"  class="com.mahesh.besics.springDemo.xml.XmlPersonDao">
+    <property name="xmlJdbcConnection" ref="xmlJdbcConnection"></property>
+    </bean>
+    
+    <context:component-scan base-package="com.mahesh.basics.componant"></context:component-scan>
+  <!--  <bean id="address" class="com.mahesh.besics.springDemo.xml.Address"> </bean> -->
+    <bean id="customer" class="com.mahesh.besics.springDemo.xml.Customer">
+    
+    <constructor-arg><ref bean="address"/></constructor-arg>
+    <constructor-arg type="java.lang.String"><value>Mahesh</value>
+    </constructor-arg> 
+   <!--  <property name="address" ref="address"></property> -->
+   </bean>
+   <bean id="address" class="com.mahesh.besics.springDemo.xml.Address"> 
+    <constructor-arg type="java.lang.String"><value>Pune</value>
+    </constructor-arg> 
+    </bean>
+      
+</beans> 
